@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./screenshots/logo.png" alt="Description of image" width="250">
+</p>
+
 # Home Asset + Warranty
 
 Home inventory and warranty tracker self-hosting application, don't miss warranty/invoice.  🔐 Privacy First - Your data never leaves your server 
