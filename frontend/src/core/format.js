@@ -20,11 +20,7 @@ export const compactMoney = (v, currency = 'INR') => {
   return `₹${n.toFixed(0)}`
 }
 
-export const currencySymbol = (code = 'INR') => {
-  const part = new Intl.NumberFormat('en', { style: 'currency', currency: code, currencyDisplay: 'narrowSymbol' })
-    .formatToParts(0).find((p) => p.type === 'currency')
-  return part ? part.value : code
-}
+export { currencySymbol } from './currencies'
 
 export const fmtDate = (d) => {
   if (!d) return '—'

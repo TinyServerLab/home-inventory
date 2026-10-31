@@ -3,6 +3,7 @@ import { KeyRound, Pencil, Plus, Tags, Trash2, User, Users } from 'lucide-react'
 import { api } from '../core/api'
 import { useAuth } from '../core/auth'
 import { fmtDate } from '../core/format'
+import { CURRENCIES } from '../core/currencies'
 import { CategoryIcon, Field, ICONS, Modal, useToast } from '../components/ui'
 import NotificationSettings from '../components/NotificationSettings'
 
@@ -20,15 +21,6 @@ function Section({ icon: I, title, children, action }) {
     </section>
   )
 }
-
-// Label only — a default for new assets and a display hint. No conversion: existing
-// amounts keep whatever currency they were saved with.
-const CURRENCIES = [
-  ['INR', 'INR — ₹ Indian Rupee'], ['USD', 'USD — $ US Dollar'], ['EUR', 'EUR — € Euro'],
-  ['GBP', 'GBP — £ British Pound'], ['AUD', 'AUD — A$ Australian Dollar'], ['CAD', 'CAD — C$ Canadian Dollar'],
-  ['SGD', 'SGD — S$ Singapore Dollar'], ['AED', 'AED — UAE Dirham'], ['JPY', 'JPY — ¥ Japanese Yen'],
-  ['CNY', 'CNY — ¥ Chinese Yuan'],
-]
 
 function Profile() {
   const { user, setUser, deleteAccount } = useAuth()
@@ -67,7 +59,7 @@ function Profile() {
           </Field>
           <Field label="Currency" hint="Used as the default for new assets">
             <select className="input" value={user.currency} onChange={(e) => saveProfile({ currency: e.target.value })}>
-              {CURRENCIES.map(([code, label]) => <option key={code} value={code}>{label}</option>)}
+              {CURRENCIES.map(([code, symbol, name]) => <option key={code} value={code}>{code} — {symbol} {name}</option>)}
             </select>
           </Field>
           <label className="flex items-center gap-2 text-sm">
