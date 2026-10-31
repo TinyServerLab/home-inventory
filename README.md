@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./screenshots/logo.png" alt="Description of image" width="250">
+</p>
+
 # Home Asset + Warranty
 
 A self-hosted household app for purchases, invoices, warranties and reminders. It runs on a Raspberry Pi 5 with Docker, alongside your **existing shared PostgreSQL and Caddy**. It serves from `https://apps.tinyserverlab.in/inventory`.
@@ -158,3 +162,10 @@ cd backend && python ../scripts/test_notifications.py
 ## Resource use on a Pi 5
 
 The app idles at roughly 120–180 MB RAM. OCR of a phone photo takes about 3–8 s on the Pi 5, and only one OCR job runs at a time. Invoices take about 0.3–1.5 MB each after re-encoding.
+
+## Screenshots
+![Dasbhoard](./screenshots/Dashboard.png)
+![Add-Asset-OCR](./screenshots/Add-Asset.png)
+![Assets-List](./screenshots/Assets-List.png)
+![Settings](./screenshots/Setting-Page.png)
+![Spend-Analysis](./screenshots/Spend-Analysis.png)
