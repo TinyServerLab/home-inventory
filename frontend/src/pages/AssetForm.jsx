@@ -10,7 +10,7 @@ import Attachments from '../components/Attachments'
 
 const EMPTY = {
   name: '', brand: '', model: '', serial_number: '', category_id: '', location: '', owner_name: '',
-  purchase_date: todayISO(), purchase_price: '', currency: 'INR', vendor: '', invoice_number: '', payment_method: '',
+  purchase_date: todayISO(), purchase_price: '', vendor: '', invoice_number: '', payment_method: '',
   warranty_months: 12, warranty_start_date: '', warranty_expiry_manual: false, warranty_expiry_date: '',
   ext_warranty_provider: '', ext_warranty_months: '', ext_warranty_expiry_date: '', ext_warranty_cost: '',
   support_contact: '', status: 'active', notes: '',
@@ -37,7 +37,7 @@ export default function AssetForm() {
   const nav = useNavigate()
   const toast = useToast()
   const { user } = useAuth()
-  const [f, setF] = useState(editing ? null : { ...EMPTY, currency: user.currency })
+  const [f, setF] = useState(editing ? null : EMPTY)
   const [cats, setCats] = useState([])
   const [sugg, setSugg] = useState({ brands: [], vendors: [], locations: [], owners: [], payment_methods: [] })
   const [attachments, setAttachments] = useState([])
@@ -102,6 +102,7 @@ export default function AssetForm() {
     const num = (v) => (v === '' || v === null ? null : v)
     const body = {
       ...f,
+      currency: user.currency,
       category_id: f.category_id ? Number(f.category_id) : null,
       purchase_price: f.purchase_price === '' ? '0' : String(f.purchase_price),
       warranty_months: Number(f.warranty_months || 0),
@@ -181,7 +182,7 @@ export default function AssetForm() {
         <h2 className="font-semibold mb-3">Purchase</h2>
         <div className="grid grid-cols-2 gap-3">
           <Field label="Purchase date *"><input type="date" className={`input ${sg('purchase_date')}`} required max={todayISO()} value={f.purchase_date} onChange={set('purchase_date')} /></Field>
-          <Field label={`Price (${currencySymbol(f.currency)}) *`}>
+          <Field label={`Price (${currencySymbol(user.currency)}) *`}>
             <input type="number" inputMode="decimal" step="0.01" min="0" className={`input ${sg('purchase_price')}`} required value={f.purchase_price} onChange={set('purchase_price')} placeholder="0" />
           </Field>
           <Field label="Store / website"><input className={`input ${sg('vendor')}`} list="vendors" value={f.vendor} onChange={set('vendor')} placeholder="Amazon, Croma…" /></Field>
@@ -230,7 +231,7 @@ export default function AssetForm() {
           {showExt && (
             <div className="grid grid-cols-2 gap-3 mt-3">
               <Field label="Provider" className="col-span-2 sm:col-span-1"><input className="input" value={f.ext_warranty_provider} onChange={set('ext_warranty_provider')} placeholder="e.g. Croma Zip Care, OneAssist" /></Field>
-              <Field label={`Cost (${currencySymbol(f.currency)})`}><input type="number" step="0.01" min="0" className="input" value={f.ext_warranty_cost} onChange={set('ext_warranty_cost')} /></Field>
+              <Field label={`Cost (${currencySymbol(user.currency)})`}><input type="number" step="0.01" min="0" className="input" value={f.ext_warranty_cost} onChange={set('ext_warranty_cost')} /></Field>
               <Field label="Extra months" hint="Starts after the manufacturer warranty ends">
                 <input type="number" min="0" max="600" className="input" value={f.ext_warranty_months} onChange={set('ext_warranty_months')} />
               </Field>

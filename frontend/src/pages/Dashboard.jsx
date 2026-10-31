@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Boxes, Camera, IndianRupee, ShieldAlert, ShieldCheck, ShieldX } from 'lucide-react'
+import { Boxes, Camera, Coins, ShieldAlert, ShieldCheck, ShieldX } from 'lucide-react'
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts'
 import { api } from '../core/api'
 import { useAuth } from '../core/auth'
@@ -74,7 +74,7 @@ export default function Dashboard() {
         <section className="card p-4">
           <div className="flex items-center justify-between mb-1">
             <h2 className="font-semibold">Value by category</h2>
-            <IndianRupee size={16} className="text-slate-400" />
+            <Coins size={16} className="text-slate-400" />
           </div>
           {d.by_category.length ? (
             <>

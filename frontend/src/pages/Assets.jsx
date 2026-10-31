@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { Boxes, Download, Plus, Search, SlidersHorizontal } from 'lucide-react'
 import { api, apiUrl, thumbUrl } from '../core/api'
+import { useAuth } from '../core/auth'
 import { fmtDate, money, STATUS_LABEL } from '../core/format'
 import { CategoryIcon, Empty, PageLoader, Spinner, WarrantyBadge, useToast } from '../components/ui'
 import AssetRow from '../components/AssetRow'
@@ -19,6 +20,7 @@ export default function Assets() {
   const [showFilters, setShowFilters] = useState(false)
   const nav = useNavigate()
   const toast = useToast()
+  const { user } = useAuth()
 
   const params = useMemo(() => ({
     q: sp.get('q') || '', category_id: sp.get('category_id') || '', warranty: sp.get('warranty') || '',
@@ -131,7 +133,7 @@ export default function Assets() {
                     <div>{fmtDate(a.purchase_date)}</div>
                     <div className="text-xs text-slate-500 truncate max-w-[10rem]">{a.vendor}</div>
                   </td>
-                  <td className="px-4 py-3 text-right tabular-nums font-medium">{money(a.purchase_price, a.currency)}</td>
+                  <td className="px-4 py-3 text-right tabular-nums font-medium">{money(a.purchase_price, user.currency)}</td>
                   <td className="px-4 py-3">
                     <WarrantyBadge state={a.warranty_state} days={a.days_left} />
                     {a.effective_expiry_date && <div className="text-[11px] text-slate-500 mt-1">until {fmtDate(a.effective_expiry_date)}</div>}

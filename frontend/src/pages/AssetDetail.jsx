@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ArrowLeft, Pencil, Phone, Plus, Trash2, Wrench } from 'lucide-react'
 import { api } from '../core/api'
+import { useAuth } from '../core/auth'
 import { currencySymbol, fmtDate, money, STATUS_LABEL, todayISO } from '../core/format'
 import { CategoryIcon, Field, Modal, PageLoader, WarrantyBadge, useToast } from '../components/ui'
 import Attachments from '../components/Attachments'
@@ -52,6 +53,7 @@ export default function AssetDetail() {
   const { id } = useParams()
   const nav = useNavigate()
   const toast = useToast()
+  const { user } = useAuth()
   const [a, setA] = useState(null)
   const [svc, setSvc] = useState(null) // form state; null = closed
 
@@ -100,7 +102,7 @@ export default function AssetDetail() {
             </div>
           </div>
           <div className="text-right hidden sm:block">
-            <div className="text-2xl font-semibold tabular-nums">{money(a.purchase_price, a.currency, true)}</div>
+            <div className="text-2xl font-semibold tabular-nums">{money(a.purchase_price, user.currency, true)}</div>
             <div className="text-xs text-slate-500">bought {fmtDate(a.purchase_date)}</div>
           </div>
         </div>
@@ -112,7 +114,7 @@ export default function AssetDetail() {
           <section className="card p-4">
             <h2 className="font-semibold mb-1">Details</h2>
             <dl>
-              <Row label="Price">{money(a.purchase_price, a.currency, true)}</Row>
+              <Row label="Price">{money(a.purchase_price, user.currency, true)}</Row>
               <Row label="Purchased">{fmtDate(a.purchase_date)}</Row>
               <Row label="Store">{a.vendor}</Row>
               <Row label="Invoice no.">{a.invoice_number}</Row>
@@ -122,7 +124,7 @@ export default function AssetDetail() {
               <Row label="Used by">{a.owner_name}</Row>
               <Row label="Warranty">{a.warranty_expiry_manual ? 'Custom date' : a.warranty_months ? `${a.warranty_months} months` : 'None'}{a.warranty_start_date ? ` from ${fmtDate(a.warranty_start_date)}` : ''}</Row>
               <Row label="Covered until">{fmtDate(a.effective_expiry_date)}</Row>
-              <Row label="Extended by">{a.ext_warranty_provider && `${a.ext_warranty_provider}${a.ext_warranty_cost ? ` · ${money(a.ext_warranty_cost, a.currency)}` : ''}`}</Row>
+              <Row label="Extended by">{a.ext_warranty_provider && `${a.ext_warranty_provider}${a.ext_warranty_cost ? ` · ${money(a.ext_warranty_cost, user.currency)}` : ''}`}</Row>
               <Row label="Support">{a.support_contact && (
                 /^[+\d][\d\s-]{6,}$/.test(a.support_contact)
                   ? <a className="text-brand-700 inline-flex items-center gap-1" href={`tel:${a.support_contact.replace(/\s/g, '')}`}><Phone size={13} />{a.support_contact}</a>
@@ -148,7 +150,7 @@ export default function AssetDetail() {
             <div className="flex items-center justify-between mb-2">
               <div>
                 <h2 className="font-semibold">Service &amp; repairs</h2>
-                {a.services.length > 0 && <p className="text-xs text-slate-500">Total spent {money(a.service_cost_total, a.currency)}</p>}
+                {a.services.length > 0 && <p className="text-xs text-slate-500">Total spent {money(a.service_cost_total, user.currency)}</p>}
               </div>
               <button className="btn-secondary btn-sm" onClick={() => setSvc({ ...EMPTY_SVC, under_warranty: a.warranty_state === 'active' || a.warranty_state === 'expiring' })}><Plus size={14} /> Add</button>
             </div>
@@ -167,7 +169,7 @@ export default function AssetDetail() {
                       </div>
                     </div>
                     <div className="text-right shrink-0">
-                      <div className="text-sm font-medium tabular-nums">{money(s.cost, a.currency)}</div>
+                      <div className="text-sm font-medium tabular-nums">{money(s.cost, user.currency)}</div>
                       <div className="flex gap-1 justify-end mt-1">
                         <button className="text-slate-400 hover:text-slate-700" onClick={() => setSvc({ ...s, vendor: s.vendor || '', reference_number: s.reference_number || '' })}><Pencil size={13} /></button>
                         <button className="text-slate-400 hover:text-rose-600" onClick={() => delSvc(s)}><Trash2 size={13} /></button>
@@ -192,7 +194,7 @@ export default function AssetDetail() {
             </Field>
             <Field label="What was done" className="col-span-2"><input className="input" required value={svc.description} onChange={(e) => setSvc({ ...svc, description: e.target.value })} placeholder="e.g. Compressor replaced" /></Field>
             <Field label="Service centre"><input className="input" value={svc.vendor} onChange={(e) => setSvc({ ...svc, vendor: e.target.value })} /></Field>
-            <Field label={`Cost (${currencySymbol(a.currency)})`}><input type="number" min="0" step="0.01" className="input" value={svc.cost} onChange={(e) => setSvc({ ...svc, cost: e.target.value })} /></Field>
+            <Field label={`Cost (${currencySymbol(user.currency)})`}><input type="number" min="0" step="0.01" className="input" value={svc.cost} onChange={(e) => setSvc({ ...svc, cost: e.target.value })} /></Field>
             <Field label="Complaint / ticket no."><input className="input" value={svc.reference_number} onChange={(e) => setSvc({ ...svc, reference_number: e.target.value })} /></Field>
             <label className="flex items-center gap-2 text-sm mt-6">
               <input type="checkbox" className="accent-brand-700 w-4 h-4" checked={svc.under_warranty} onChange={(e) => setSvc({ ...svc, under_warranty: e.target.checked })} /> Covered by warranty

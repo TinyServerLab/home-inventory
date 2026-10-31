@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import { thumbUrl } from '../core/api'
+import { useAuth } from '../core/auth'
 import { fmtDate, money } from '../core/format'
 import { CategoryIcon, WarrantyBadge } from './ui'
 
 export default function AssetRow({ a, showExpiry = true }) {
+  const { user } = useAuth()
   return (
     <Link to={`/assets/${a.id}`} className="flex items-center gap-3 px-4 py-3 hover:bg-slate-50 transition">
       {a.thumb_attachment_id ? (
@@ -25,7 +27,7 @@ export default function AssetRow({ a, showExpiry = true }) {
           </>
         ) : (
           <>
-            <div className="text-sm font-medium tabular-nums">{money(a.purchase_price, a.currency)}</div>
+            <div className="text-sm font-medium tabular-nums">{money(a.purchase_price, user.currency)}</div>
             <div className="text-[11px] text-slate-500">{fmtDate(a.purchase_date)}</div>
           </>
         )}
