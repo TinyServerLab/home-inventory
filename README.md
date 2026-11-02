@@ -173,10 +173,10 @@ The app idles at roughly 120–180 MB RAM. OCR of a phone photo takes about 3–
 
 ## Star History
 
-<a href="https://www.star-history.com/">
+<a href="https://www.star-history.com/?repos=tinyserverlab%2Fhome-inventory&type=date&legend=top-left">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=asymptote-labs/agent-beacon&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=asymptote-labs/agent-beacon&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=asymptote-labs/agent-beacon&type=date&legend=top-left" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=tinyserverlab/home-inventory&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=tinyserverlab/home-inventory&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=tinyserverlab/home-inventory&type=date&legend=top-left" />
  </picture>
 </a>
