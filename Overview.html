@@ -109,27 +109,9 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:v
   </header>
 
   <section>
-    <h2>Tagline <span style="color:var(--muted);font-weight:400;font-size:.8rem">— pick one, PH shows ~60 chars</span></h2>
-    <div class="taglines" id="taglines">
-      <div class="field">
-        <div class="field-head"><span class="tag">A · 46 chars</span><button class="copybtn" data-copy="Snap your invoice, never miss a warranty again">Copy</button></div>
-        <div class="field-body">Snap your invoice, never miss a warranty again</div>
-      </div>
-      <div class="field">
-        <div class="field-head"><span class="tag">B · 46 chars</span><button class="copybtn" data-copy="Self-hosted OCR warranty tracker for your home">Copy</button></div>
-        <div class="field-body">Self-hosted OCR warranty tracker for your home</div>
-      </div>
-      <div class="field">
-        <div class="field-head"><span class="tag">C · 49 chars</span><button class="copybtn" data-copy="Your warranties, tracked on your own Raspberry Pi">Copy</button></div>
-        <div class="field-body">Your warranties, tracked on your own Raspberry Pi</div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Description <span style="color:var(--muted);font-weight:400;font-size:.8rem">— 262 chars</span></h2>
+    <h2>Summary <span style="color:var(--muted);font-weight:400;font-size:.8rem"></span></h2>
     <div class="field">
-      <div class="field-head"><span class="tag">listing description</span><button class="copybtn" data-copy="Home Asset + Warranty turns a phone photo of an invoice into warranty tracking: OCR reads it, you confirm, and a single digest reminder lands at 30/7/0 days via Telegram, Discord, email, or push. One Docker container, your own hardware, nothing leaves the house.">Copy</button></div>
+      <div class="field-head"><span class="tag">listing description</span></div>
       <div class="field-body">Home Asset + Warranty turns a phone photo of an invoice into warranty tracking: OCR reads it, you confirm, and a single digest reminder lands at 30/7/0 days via Telegram, Discord, email, or push. One Docker container, your own hardware, nothing leaves the house.</div>
     </div>
   </section>
@@ -150,53 +132,23 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:v
   </section>
 
   <section>
-    <h2>Maker's first comment <span style="color:var(--muted);font-weight:400;font-size:.8rem">— draft, fill the brackets</span></h2>
-    <div class="field">
-      <div class="field-head"><span class="tag">first comment</span><button class="copybtn" id="comment-copy">Copy</button></div>
-      <div class="field-body" id="comment-text">👋 Hey hunters — maker here.
-
-I built Home Asset + Warranty for my own household, running on a Raspberry Pi 5 next to the Postgres and Caddy I already had. [The reason I started: e.g. a warranty I missed, or a drawer full of paper invoices.]
-
-The part I use the most is the OCR capture — a phone photo of an invoice becomes a tracked warranty in a few seconds, and the reminders land in [Telegram/Discord/email] a month before anything expires, not the day after.
-
-Everything stays on my own hardware — no cloud, no account with a third party, just your Docker host and your database. It's open source: github.com/TinyServerLab/home-inventory
-
-Happy to answer anything about the OCR accuracy, the Pi resource use, or self-hosting it behind your own reverse proxy.</div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Suggested topics</h2>
+    <h2>Topics</h2>
     <div class="pillrow">
       <span class="pill">Self-Hosted</span><span class="pill">Open Source</span><span class="pill">Privacy</span>
       <span class="pill">Home</span><span class="pill">Productivity</span><span class="pill">Raspberry Pi</span>
     </div>
-    <p class="lede" style="margin-top:10px">PH's live topic list changes — match these to the closest real options at submission time.</p>
   </section>
 
   <section>
-    <h2>Gallery order</h2>
-    <ol class="gallery">
-      <li><span class="n">1</span><span>Dashboard.png</span><span class="why">the hook — overview at a glance</span></li>
-      <li><span class="n">2</span><span>Add-Asset.png</span><span class="why">the OCR capture — the feature that sells it</span></li>
-      <li><span class="n">3</span><span>Spend-Analysis.png</span><span class="why">shows depth beyond warranties</span></li>
-      <li><span class="n">4</span><span>Assets-List.png</span><span class="why">day-to-day view</span></li>
-      <li><span class="n">5</span><span>Setting-Page.png</span><span class="why">notification channels, trust signal</span></li>
-    </ol>
+    <h2>Gallery</h2>
+    <img src="./screenshots/Dashboard.png" alt="Dashboard" />
+    <img src="./screenshots/Add-Asset.png" alt="Add Asset" />
+    <img src="./screenshots/Spend-Analysis.png" alt="Spend Analysis" />
+    <img src="./screenshots/Assets-List.png" alt="Assets List" />
+    <img src="./screenshots/Setting-Page.png" alt="Settings" />
   </section>
 
-  <section>
-    <h2>Before you post</h2>
-    <div class="checklist">
-      <div class="item"><input type="checkbox"><span><span class="sev">risk</span>No LICENSE file in the repo — add one before the GitHub link gets traffic; self-hosters and PH's open-source crowd check for it.</span></div>
-      <div class="item"><input type="checkbox"><span><span class="sev">risk</span>Standalone mode still needs an existing Caddy network — it's not a zero-dependency installer. Say that plainly so Docker-comfortable visitors self-select in.</span></div>
-      <div class="item"><input type="checkbox"><span><span class="sev">check</span>Eyeball the five screenshots at full size before uploading — crop out browser chrome, confirm they're sharp at PH's gallery size.</span></div>
-      <div class="item"><input type="checkbox"><span><span class="sev">nice-to-have</span>No demo GIF/video exists yet. A 20–30s screen capture of the OCR-capture flow in the top gallery slot outperforms a static screenshot on PH.</span></div>
-      <div class="item"><input type="checkbox"><span><span class="sev">todo</span>Fill the bracketed personal details in the maker comment — your actual reason for building it wasn't invented here.</span></div>
-    </div>
-  </section>
-
-  <footer>generated from README.md + backend/app/main.py + docker-compose-standalone.yml — TinyServerLab/home-inventory</footer>
+  <footer>Home Inventory - Asset & Warranty Tracker — TinyServerLab/home-inventory</footer>
 </div>
 
 <script>
