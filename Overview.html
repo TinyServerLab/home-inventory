@@ -1,0 +1,219 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Home Asset + Warranty — Launch Kit</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* layout: a single-column CLI-panel document — each launch field is a labeled "config block" you copy into Product Hunt */
+:root{
+  --bg:#f3f1ec; --panel:#ffffff; --ink:#1c2230; --muted:#5b6475;
+  --accent:#b8792e; --accent-ink:#ffffff; --line:#dcd8cc; --mono-bg:#eceade;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15181f; --panel:#1b1f29; --ink:#e9e6dd; --muted:#9aa0ad;
+    --accent:#e0a34d; --accent-ink:#15181f; --line:#2c313d; --mono-bg:#20242e;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15181f; --panel:#1b1f29; --ink:#e9e6dd; --muted:#9aa0ad;
+  --accent:#e0a34d; --accent-ink:#15181f; --line:#2c313d; --mono-bg:#20242e;
+  color-scheme: dark;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,sans-serif;
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+  padding-block:32px 64px;
+}
+.wrap{max-width:720px;margin:0 auto}
+
+h1,h2{font-family:"Fraunces",Georgia,serif;text-wrap:balance;margin:0}
+h1{font-size:clamp(1.6rem,4vw,2.3rem);font-weight:600;letter-spacing:-0.01em}
+h2{font-size:1.15rem;font-weight:600;margin-bottom:2px}
+
+.eyebrow{
+  font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:10px;display:block;
+}
+.lede{color:var(--muted);font-size:.95rem;max-width:58ch;margin-top:10px;line-height:1.55}
+
+header.top{padding-block:4px 28px;border-bottom:1px solid var(--line);margin-bottom:28px}
+.repo{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--muted);margin-top:14px}
+.repo a{color:var(--muted);text-decoration-color:var(--line)}
+
+section{margin-bottom:34px}
+.field{
+  background:var(--panel);border:1px solid var(--line);border-radius:10px;
+  padding:16px 18px;margin-top:10px;
+}
+.field-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.field-head .tag{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--muted)}
+.field-body{font-size:.98rem;line-height:1.55}
+.field-body.mono{font-family:"IBM Plex Mono",monospace;font-size:.85rem;background:var(--mono-bg);border-radius:6px;padding:10px 12px;white-space:pre-wrap}
+
+.copybtn{
+  font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.03em;
+  background:transparent;border:1px solid var(--line);color:var(--muted);
+  border-radius:6px;padding:4px 9px;cursor:pointer;flex:0 0 auto;
+}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.copybtn[data-copied]::after{content:" ✓"}
+
+.taglines{display:grid;gap:10px}
+.taglines .field{margin-top:0}
+
+ul.feat{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ul.feat li{
+  background:var(--panel);border:1px solid var(--line);border-radius:10px;
+  padding:12px 14px;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;
+}
+ul.feat b{font-weight:600}
+ul.feat .num{font-family:"IBM Plex Mono",monospace;color:var(--accent);font-size:.82rem;padding-top:2px}
+ul.feat p{margin:2px 0 0;color:var(--muted);font-size:.9rem;line-height:1.45}
+
+.pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.pill{
+  font-family:"IBM Plex Mono",monospace;font-size:.76rem;background:var(--mono-bg);
+  border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--ink);
+}
+
+ol.gallery{margin:10px 0 0;padding-left:0;list-style:none;display:grid;gap:8px}
+ol.gallery li{
+  display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:center;
+  background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:9px 12px;
+}
+ol.gallery .n{font-family:"IBM Plex Mono",monospace;color:var(--accent);font-size:.85rem}
+ol.gallery .why{color:var(--muted);font-size:.82rem;text-align:right}
+
+.checklist{display:grid;gap:8px;margin-top:10px}
+.checklist .item{
+  display:grid;grid-template-columns:18px 1fr;gap:10px;background:var(--panel);
+  border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:.9rem;line-height:1.5;
+}
+.checklist .item input{margin-top:3px}
+.checklist .sev{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--accent);margin-right:6px}
+
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.8rem;font-family:"IBM Plex Mono",monospace}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <span class="eyebrow">Product Hunt launch kit</span>
+    <h1>Home Asset + Warranty</h1>
+    <p class="lede">Copy-ready tagline, description, feature list and maker comment for the home-inventory launch — pulled straight from the README and source, nothing invented.</p>
+    <p class="repo">github.com/TinyServerLab/home-inventory</p>
+  </header>
+
+  <section>
+    <h2>Tagline <span style="color:var(--muted);font-weight:400;font-size:.8rem">— pick one, PH shows ~60 chars</span></h2>
+    <div class="taglines" id="taglines">
+      <div class="field">
+        <div class="field-head"><span class="tag">A · 46 chars</span><button class="copybtn" data-copy="Snap your invoice, never miss a warranty again">Copy</button></div>
+        <div class="field-body">Snap your invoice, never miss a warranty again</div>
+      </div>
+      <div class="field">
+        <div class="field-head"><span class="tag">B · 46 chars</span><button class="copybtn" data-copy="Self-hosted OCR warranty tracker for your home">Copy</button></div>
+        <div class="field-body">Self-hosted OCR warranty tracker for your home</div>
+      </div>
+      <div class="field">
+        <div class="field-head"><span class="tag">C · 49 chars</span><button class="copybtn" data-copy="Your warranties, tracked on your own Raspberry Pi">Copy</button></div>
+        <div class="field-body">Your warranties, tracked on your own Raspberry Pi</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Description <span style="color:var(--muted);font-weight:400;font-size:.8rem">— 262 chars</span></h2>
+    <div class="field">
+      <div class="field-head"><span class="tag">listing description</span><button class="copybtn" data-copy="Home Asset + Warranty turns a phone photo of an invoice into warranty tracking: OCR reads it, you confirm, and a single digest reminder lands at 30/7/0 days via Telegram, Discord, email, or push. One Docker container, your own hardware, nothing leaves the house.">Copy</button></div>
+      <div class="field-body">Home Asset + Warranty turns a phone photo of an invoice into warranty tracking: OCR reads it, you confirm, and a single digest reminder lands at 30/7/0 days via Telegram, Discord, email, or push. One Docker container, your own hardware, nothing leaves the house.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Features</h2>
+    <ul class="feat">
+      <li><span class="num">01</span><div><b>OCR invoice capture</b><p>Photo or PDF of an invoice suggests brand, model, serial, store, invoice number, date, total and warranty length — you just confirm it.</p></div></li>
+      <li><span class="num">02</span><div><b>Warranty math, handled</b><p>Expiry = start + N months − 1 day. Extended warranty / AMC chains onto the manufacturer warranty automatically, or type an exact date.</p></div></li>
+      <li><span class="num">03</span><div><b>One digest, not a flood</b><p>30/7/0-day reminders collapse into a single message per channel — closest tier only, never sent twice, catches up if the Pi was off.</p></div></li>
+      <li><span class="num">04</span><div><b>Four notification channels</b><p>Telegram, Discord, email (SMTP) and ntfy push, each with its own on/off switch and a Test button.</p></div></li>
+      <li><span class="num">05</span><div><b>Spend dashboard</b><p>Spending by month, category and store, charted with Recharts.</p></div></li>
+      <li><span class="num">06</span><div><b>Family accounts, no public sign-up</b><p>Admins add members from Settings or the CLI. Nobody else can create an account.</p></div></li>
+      <li><span class="num">07</span><div><b>Hardened by default</b><p>Argon2id password hashes, server-side sessions, CSRF checks, login lockouts, strict CSP, uploads checked by content not extension, photos re-encoded to strip EXIF/GPS.</p></div></li>
+      <li><span class="num">08</span><div><b>Runs on a Raspberry Pi 5</b><p>One non-root container, read-only root filesystem, 512 MB cap, ~120–180 MB idle. Alongside your existing Postgres + Caddy, or fully standalone with its own database.</p></div></li>
+      <li><span class="num">09</span><div><b>Open source</b><p>MIT-style self-host — clone it, point it at your own Docker + Postgres, done.</p></div></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Maker's first comment <span style="color:var(--muted);font-weight:400;font-size:.8rem">— draft, fill the brackets</span></h2>
+    <div class="field">
+      <div class="field-head"><span class="tag">first comment</span><button class="copybtn" id="comment-copy">Copy</button></div>
+      <div class="field-body" id="comment-text">👋 Hey hunters — maker here.
+
+I built Home Asset + Warranty for my own household, running on a Raspberry Pi 5 next to the Postgres and Caddy I already had. [The reason I started: e.g. a warranty I missed, or a drawer full of paper invoices.]
+
+The part I use the most is the OCR capture — a phone photo of an invoice becomes a tracked warranty in a few seconds, and the reminders land in [Telegram/Discord/email] a month before anything expires, not the day after.
+
+Everything stays on my own hardware — no cloud, no account with a third party, just your Docker host and your database. It's open source: github.com/TinyServerLab/home-inventory
+
+Happy to answer anything about the OCR accuracy, the Pi resource use, or self-hosting it behind your own reverse proxy.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Suggested topics</h2>
+    <div class="pillrow">
+      <span class="pill">Self-Hosted</span><span class="pill">Open Source</span><span class="pill">Privacy</span>
+      <span class="pill">Home</span><span class="pill">Productivity</span><span class="pill">Raspberry Pi</span>
+    </div>
+    <p class="lede" style="margin-top:10px">PH's live topic list changes — match these to the closest real options at submission time.</p>
+  </section>
+
+  <section>
+    <h2>Gallery order</h2>
+    <ol class="gallery">
+      <li><span class="n">1</span><span>Dashboard.png</span><span class="why">the hook — overview at a glance</span></li>
+      <li><span class="n">2</span><span>Add-Asset.png</span><span class="why">the OCR capture — the feature that sells it</span></li>
+      <li><span class="n">3</span><span>Spend-Analysis.png</span><span class="why">shows depth beyond warranties</span></li>
+      <li><span class="n">4</span><span>Assets-List.png</span><span class="why">day-to-day view</span></li>
+      <li><span class="n">5</span><span>Setting-Page.png</span><span class="why">notification channels, trust signal</span></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Before you post</h2>
+    <div class="checklist">
+      <div class="item"><input type="checkbox"><span><span class="sev">risk</span>No LICENSE file in the repo — add one before the GitHub link gets traffic; self-hosters and PH's open-source crowd check for it.</span></div>
+      <div class="item"><input type="checkbox"><span><span class="sev">risk</span>Standalone mode still needs an existing Caddy network — it's not a zero-dependency installer. Say that plainly so Docker-comfortable visitors self-select in.</span></div>
+      <div class="item"><input type="checkbox"><span><span class="sev">check</span>Eyeball the five screenshots at full size before uploading — crop out browser chrome, confirm they're sharp at PH's gallery size.</span></div>
+      <div class="item"><input type="checkbox"><span><span class="sev">nice-to-have</span>No demo GIF/video exists yet. A 20–30s screen capture of the OCR-capture flow in the top gallery slot outperforms a static screenshot on PH.</span></div>
+      <div class="item"><input type="checkbox"><span><span class="sev">todo</span>Fill the bracketed personal details in the maker comment — your actual reason for building it wasn't invented here.</span></div>
+    </div>
+  </section>
+
+  <footer>generated from README.md + backend/app/main.py + docker-compose-standalone.yml — TinyServerLab/home-inventory</footer>
+</div>
+
+<script>
+function wireCopy(btn, text){
+  btn.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(text); }
+    catch(e){
+      const r = document.createRange(); r.selectNodeContents(btn.closest('.field').querySelector('.field-body'));
+      const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    }
+    btn.setAttribute('data-copied','');
+    setTimeout(()=>btn.removeAttribute('data-copied'), 1500);
+  });
+}
+document.querySelectorAll('.copybtn[data-copy]').forEach(b => wireCopy(b, b.getAttribute('data-copy')));
+const commentBtn = document.getElementById('comment-copy');
+wireCopy(commentBtn, document.getElementById('comment-text').innerText);
+</script>
+
+</body></html>
